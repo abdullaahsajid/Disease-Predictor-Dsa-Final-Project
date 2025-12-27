@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Disease Predictor</h1>
+
+        <form method="POST">
+            <h3>Select your symptoms:</h3>
+            <div class="symptoms">
+                {% for symptom in symptoms %}
+                    <label>
+                        <input type="checkbox" name="symptoms" value="{{ loop.index0 }}">
+                        {{ symptom }}
+                    </label>
+                {% endfor %}
+            </div>
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if results %}
+            <h2>Probability Results:</h2>
+            <ul>
+                {% for res in results %}
+                    <li>{{ res.name }}: {{ res.prob }}%</li>
+                {% endfor %}
+            </ul>
+            <h3>Most Probable Disease: {{ best_disease }} ({{ best_prob }}% match)</h3>
+        {% endif %}
+
+        
+        <hr style="margin: 30px 0; opacity: 0.3;">
+
+        <h2>Group Members</h2>
+        <div class="group-members">
+            <p><strong>1.</strong> Name: Abdullah Sajid &nbsp;|&nbsp; Registration No: B24F0350CS115</p>
+            <p><strong>2.</strong> Name: Aqeel Imran &nbsp;|&nbsp; Registration No: B24F0892AI094</p>
+            <p><strong>3.</strong> Name: Haider Ali &nbsp;|&nbsp; Registration No:  B24F0861CS099</p>
+        </div>
+    </div>
+</body>
+</html>
